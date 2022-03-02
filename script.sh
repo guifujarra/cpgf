@@ -58,7 +58,7 @@ CSV HEADER;"
 done
 
 psql -U $USER -d $DB -c "insert into final_cpgf(codigo_orgao_superior, nome_orgao_superior, codigo_orgao, nome_orgao, codigo_unidade_gestora, 
-	nome_unidade_gestora, ano, mes, cpf_portador, documento_favorecido, nome_favorecido, transacao, "data", valor)
+	nome_unidade_gestora, ano, mes, cpf_portador, documento_favorecido, nome_favorecido, transacao, nome_portador, "data", valor)
 	select
 	codigo_orgao_superior,
 	nome_orgao_superior,
@@ -72,6 +72,7 @@ psql -U $USER -d $DB -c "insert into final_cpgf(codigo_orgao_superior, nome_orga
 	documento_favorecido,
 	nome_favorecido,
 	transacao,
+	nome_portador,
 	TO_DATE("data", 'DD/MM/YYYY') as "data",
 	cast(replace(valor, ',', '.' ) as decimal(20,2)) as valor
 	from tmp_cpgf;"
